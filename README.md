@@ -3,9 +3,13 @@
 It is an application with the Flutter framework and Dart language, which I used the bloc package for state management
 
 Features
+
 Email & Password Authentication
+
 Filtering Products (Based on Category)
+
 Product Details
+
 Cart
 
 
