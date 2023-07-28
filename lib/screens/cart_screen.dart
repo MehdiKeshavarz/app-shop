@@ -86,7 +86,6 @@ class _CartScreenState extends State<CartScreen> {
                   if (showButtonPrice) ...{
                     FinalPriceButton(
                       basketFinalPrice: state.finalPrice,
-                      paymentRequest: _paymentRequest,
                     )
                   }
                 }
@@ -100,12 +99,11 @@ class _CartScreenState extends State<CartScreen> {
 }
 
 class FinalPriceButton extends StatelessWidget {
-  final PaymentRequest paymentRequest;
+  //final PaymentRequest paymentRequest;
   final int? basketFinalPrice;
   const FinalPriceButton({
     super.key,
     this.basketFinalPrice,
-    required this.paymentRequest,
   });
 
   @override
@@ -122,10 +120,7 @@ class FinalPriceButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
             ),
-            onPressed: () {
-              ZarinPal().startPayment(
-                  paymentRequest, (status, paymentGatewayUri) => null);
-            },
+            onPressed: () {},
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
