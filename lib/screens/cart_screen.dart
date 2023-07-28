@@ -79,7 +79,7 @@ class _CartScreenState extends State<CartScreen> {
                         }
                       })
                     },
-                    const SliverPadding(padding: EdgeInsets.only(bottom: 65.0))
+                    const SliverPadding(padding: EdgeInsets.only(bottom: 64.0))
                   ],
                 ),
                 if (state is BasketCompletedState) ...{
