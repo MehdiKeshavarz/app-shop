@@ -2,16 +2,12 @@
 
 It is an application with the Flutter framework and Dart language, which I used the bloc package for state management
 
-Features
+.Bloc architecture
+.Dependincy injection
+.Hive database
+.Rest Api
 
-Email & Password Authentication
-
-Filtering Products (Based on Category)
-
-Product Details
-
-Cart
-
+ And...
 
 <img width="203" alt="home" src="https://github.com/MehdiKeshavarz/app-shop/assets/94130466/47bddfad-87f1-477c-aa0c-0c31d39b8aed">
 
