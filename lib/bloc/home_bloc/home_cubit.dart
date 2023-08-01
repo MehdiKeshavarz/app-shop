@@ -16,7 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   HomeCubit() : super(HomeInitial());
 
-  void getBanner() async {
+  void getDataHome() async {
     emit(HomeLoading());
     var bannerData = await homeRepository.getBannerData();
     var categoryData = await categoryRepository.getCategoryData();

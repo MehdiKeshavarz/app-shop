@@ -21,78 +21,85 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    context.read<HomeCubit>().getBanner();
+    context.read<HomeCubit>().getDataHome();
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isShowTitle = false;
     return Scaffold(
       backgroundColor: ColorPalette.backgroundColor,
       body: SafeArea(
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
-            return CustomScrollView(
-              shrinkWrap: true,
-              slivers: [
-                const _GetSearchBox(),
-                if (state is HomeLoading) ...[
-                  const SliverToBoxAdapter(child: HomeShimmer())
-                ],
-                if (state is HomeLoaded) ...[
-                  state.bannerList.fold(
-                    (errorMessage) {
-                      return SliverToBoxAdapter(
-                          child: Center(child: Text(errorMessage)));
-                    },
-                    (bannerList) {
-                      return SliverToBoxAdapter(
-                          child: BannerSlider(bannerList: bannerList));
-                    },
+            return RefreshIndicator(
+              backgroundColor: ColorPalette.backgroundColor,
+              color: ColorPalette.blue,
+              strokeWidth: 3,
+              onRefresh: () async {
+                context.read<HomeCubit>().getDataHome();
+              },
+              child: CustomScrollView(
+                shrinkWrap: true,
+                slivers: [
+                  const _GetSearchBox(),
+                  if (state is HomeLoading) ...[
+                    const SliverToBoxAdapter(child: HomeShimmer())
+                  ],
+                  if (state is HomeLoaded) ...[
+                    state.bannerList.fold(
+                      (errorMessage) {
+                        return SliverToBoxAdapter(
+                            child: Center(child: Text(errorMessage)));
+                      },
+                      (bannerList) {
+                        return SliverToBoxAdapter(
+                            child: BannerSlider(bannerList: bannerList));
+                      },
+                    ),
+                  ],
+                  if (state is HomeLoaded) const _GetCategoryTitle(),
+                  if (state is HomeLoaded) ...[
+                    state.categoryList.fold(
+                      (errorMessage) {
+                        return SliverToBoxAdapter(
+                            child: Center(child: Text(errorMessage)));
+                      },
+                      (categoryList) {
+                        return _GetCategoryList(categoryList: categoryList);
+                      },
+                    )
+                  ],
+                  const SliverToBoxAdapter(
+                      child: CategoryName(categoryName: 'پرفروش ترین ها')),
+                  if (state is HomeLoaded) ...[
+                    state.productBestSellerList.fold(
+                      (errorMessage) {
+                        return SliverToBoxAdapter(
+                            child: Center(child: Text(errorMessage)));
+                      },
+                      (productList) {
+                        return _GetBestSellerProducts(productList: productList);
+                      },
+                    ),
+                  ],
+                  const SliverToBoxAdapter(
+                    child: CategoryName(categoryName: 'پر بازدیدترین ها'),
                   ),
+                  if (state is HomeLoaded) ...[
+                    state.productMostVisitedList.fold(
+                      (errorMessage) {
+                        return SliverToBoxAdapter(
+                            child: Center(child: Text(errorMessage)));
+                      },
+                      (productList) {
+                        return _GetMostViewedProducts(productList: productList);
+                      },
+                    ),
+                  ],
                 ],
-                if (state is HomeLoaded) const _GetCategoryTitle(),
-                if (state is HomeLoaded) ...[
-                  state.categoryList.fold(
-                    (errorMessage) {
-                      return SliverToBoxAdapter(
-                          child: Center(child: Text(errorMessage)));
-                    },
-                    (categoryList) {
-                      return _GetCategoryList(categoryList: categoryList);
-                    },
-                  )
-                ],
-                const SliverToBoxAdapter(
-                    child: CategoryName(categoryName: 'پرفروش ترین ها')),
-                if (state is HomeLoaded) ...[
-                  state.productBestSellerList.fold(
-                    (errorMessage) {
-                      return SliverToBoxAdapter(
-                          child: Center(child: Text(errorMessage)));
-                    },
-                    (productList) {
-                      return _GetBestSellerProducts(productList: productList);
-                    },
-                  ),
-                ],
-                const SliverToBoxAdapter(
-                  child: CategoryName(categoryName: 'پر بازدیدترین ها'),
-                ),
-                if (state is HomeLoaded) ...[
-                  state.productMostVisitedList.fold(
-                    (errorMessage) {
-                      return SliverToBoxAdapter(
-                          child: Center(child: Text(errorMessage)));
-                    },
-                    (productList) {
-                      return _GetMostViewedProducts(productList: productList);
-                    },
-                  ),
-                ],
-              ],
+              ),
             );
           },
         ),
