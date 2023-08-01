@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:shop_app/Widgets/cached_image.dart';
 import 'package:shop_app/data/models/product_model.dart';
 import 'package:shop_app/screens/product_detail_screen.dart';
@@ -131,7 +132,7 @@ class ProductItemCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              '${productItem.price}' ?? '',
+                              formatPriceString('${productItem.price}' ?? ''),
                               style: const TextStyle(
                                 fontFamily: 'sm',
                                 fontSize: 14,
@@ -140,7 +141,8 @@ class ProductItemCard extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              discountedPrice.toString() ?? '',
+                              formatPriceString(
+                                  discountedPrice.toString() ?? ''),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'sb',
@@ -168,4 +170,11 @@ class ProductItemCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String formatPriceString(String priceString) {
+  final price = double.parse(priceString);
+  const separator = ",";
+  final formatter = NumberFormat("#,###.##", "en_US");
+  return formatter.format(price).replaceAll(".", separator);
 }
