@@ -27,5 +27,4 @@ It is an application with the Flutter framework and Dart language, which I used 
 <img width="203" alt="all_product" src="https://github.com/MehdiKeshavarz/app-shop/assets/94130466/9c9fa39f-f37a-4f2c-9f43-7fccb6f496b5">
 
 
-<img width="210" alt="Untitled" src="https://github.com/MehdiKeshavarz/flutter_shop_app/assets/94130466/957df1b1-f4ca-4757-9d5e-c558312a1879">
 
