@@ -5,7 +5,7 @@ import 'package:shop_app/Widgets/cached_image.dart';
 import 'package:shop_app/bloc/basket_bloc/basket_bloc.dart';
 import 'package:shop_app/constants/color_palette.dart';
 import 'package:shop_app/data/models/cart_item_model.dart';
-import 'package:shop_app/utils/extension_color.dart';
+import 'package:shop_app/utils/string_extension.dart';
 import 'package:zarinpal/zarinpal.dart';
 
 import '../Widgets/custom_appbar.dart';

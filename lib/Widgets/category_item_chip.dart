@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/Widgets/cached_image.dart';
 import 'package:shop_app/data/models/category_model.dart';
 import 'package:shop_app/screens/product_list_screen.dart';
-import 'package:shop_app/utils/extension_color.dart';
+import 'package:shop_app/utils/string_extension.dart';
 
 class CategoryItemChip extends StatelessWidget {
   final CategoryModel categoryItem;
